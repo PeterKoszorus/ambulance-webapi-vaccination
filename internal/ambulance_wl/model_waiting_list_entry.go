@@ -22,6 +22,9 @@ type WaitingListEntry struct {
 	// Name of patient in waiting list
 	Name string `json:"name,omitempty"`
 
+	// Name of the available vaccination
+	NameOfVaccine string `json:"nameOfVaccine"`
+
 	// Unique identifier of the patient known to Web-In-Cloud system
 	PatientId string `json:"patientId"`
 
