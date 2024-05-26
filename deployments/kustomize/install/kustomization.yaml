@@ -6,7 +6,7 @@ resources:
 - service.yaml
 
 configMapGenerator:
-  - name: pko-ambulance-webapi-mongodb-init
+  - name: pko-ambulance-webapi-vaccination-mongodb-init
     files:
       - params/init-db.js
   - name: pko-ambulance-webapi-vaccination-config
