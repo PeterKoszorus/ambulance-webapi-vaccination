@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pko-ambulance-webapi
+  name: pko-ambulance-webapi-vaccination
 spec:
   template:
    spec:
@@ -33,7 +33,7 @@ spec:
                   name: mongodb-auth
                   key: password
       containers:
-        - name: pko-ambulance-wl-webapi-container
+        - name: pko-ambulance-webapi-vaccination-container
           env:
             - name: AMBULANCE_API_MONGODB_HOST
               value: null

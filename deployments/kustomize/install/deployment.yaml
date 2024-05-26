@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pko-ambulance-webapi
+  name: pko-ambulance-webapi-vaccination
 spec:
   replicas: 1
   selector:
       matchLabels:
-        pod: pko-ambulance-webapi-label
+        pod: pko-ambulance-webapi-vaccination-label
   template:
       metadata:
         labels:
-          pod: pko-ambulance-webapi-label
+          pod: pko-ambulance-webapi-vaccination-label
       spec:
         volumes:
         - name: init-scripts
           configMap:
-            name: pko-ambulance-webapi-mongodb-init
+            name: pko-ambulance-webapi-vaccination-mongodb-init
         initContainers:
         - name: init-mongodb
           image: mongo:latest
@@ -38,12 +38,12 @@ spec:
              - name: AMBULANCE_API_MONGODB_DATABASE
                valueFrom:
                  configMapKeyRef:
-                   name: pko-ambulance-webapi-config
+                   name: pko-ambulance-webapi-vaccination-config
                    key: database
              - name: AMBULANCE_API_MONGODB_COLLECTION
                valueFrom:
                  configMapKeyRef:
-                   name: pko-ambulance-webapi-config
+                   name: pko-ambulance-webapi-vaccination-config
                    key: collection
              - name: RETRY_CONNECTION_SECONDS
                value: "5"
@@ -55,8 +55,8 @@ spec:
               memory: "256Mi"
               cpu: "0.1"
         containers:
-        - name: pko-ambulance-wl-webapi-container
-          image: peterkoszorus/ambulance-wl-webapi:latest
+        - name: pko-ambulance-webapi-vaccination-container
+          image: peterkoszorus/ambulance-webapi-vaccination:latest
           imagePullPolicy: Always
           ports:
           - name: webapi-port
@@ -79,12 +79,12 @@ spec:
             - name: AMBULANCE_API_MONGODB_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: pko-ambulance-webapi-config
+                  name: pko-ambulance-webapi-vaccination-config
                   key: database
             - name: AMBULANCE_API_MONGODB_COLLECTION
               valueFrom:
                 configMapKeyRef:
-                  name: pko-ambulance-webapi-config
+                  name: pko-ambulance-webapi-vaccination-config
                   key: collection
             - name: AMBULANCE_API_MONGODB_TIMEOUT_SECONDS
               value: "5"

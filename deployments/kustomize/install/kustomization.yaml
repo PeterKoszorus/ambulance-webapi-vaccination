@@ -9,7 +9,7 @@ configMapGenerator:
   - name: pko-ambulance-webapi-mongodb-init
     files:
       - params/init-db.js
-  - name: pko-ambulance-webapi-config
+  - name: pko-ambulance-webapi-vaccination-config
     literals:
       - database=pko-ambulance
       - collection=ambulance
@@ -19,4 +19,4 @@ patches:
      group: apps
      version: v1
      kind: Deployment
-     name: pko-ambulance-webapi
+     name: pko-ambulance-webapi-vaccination
